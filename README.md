@@ -1,1 +1,1 @@
-# alv-ch-ng-generator
+# generator-alvchng
