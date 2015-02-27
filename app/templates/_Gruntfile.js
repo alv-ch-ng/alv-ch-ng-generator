@@ -28,7 +28,7 @@
             },
             uglify: {
                 options: {
-                    banner: '<%= alvchng.banner %>'
+                    banner: '<%%= alvchng.banner %>'
                 },
                 prod: {
                     files: {
