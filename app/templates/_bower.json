@@ -1,0 +1,53 @@
+{
+  "name": "alv-ch-ng.<%= answers.moduleName %>",
+  "version": "<%= answers.version %>",
+  "ignore": [
+    ".idea",
+    "demo",
+    "dev",
+    "lib",
+    "node_modules",
+    "src",
+    "test",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    "*.iml",
+    "bower.json",
+    "Gruntfile.js",
+    "package.json",
+    "README.md",
+    "**/.*",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-translate": "2.6.0",
+    "bootstrap": "v3.3.1",
+    "bootstrapaccessibilityplugin": "v1.0.4",
+    "jquery": "2.1.1",
+    "ng-lodash":"latest"
+  },
+  "devDependencies": {
+    "alv-ch-ng-core": "latest",
+    "angular": "latest",
+    "angular-mocks": "latest",
+    "angular-translate-storage-local": "latest",
+    "angular-translate-storage-cookie": "latest",
+    "angular-translate-loader-static-files": "latest",
+    "jasmine": "2.1.3",
+    "jasmine-jquery": "2.0.5"<% if (answers.addLess == true) { %>,
+    "less": "1.7.0"<% } %>
+  },
+  "resolutions": {
+    "jquery": "~2.1.1",
+    "angular": "~1.3.0"
+  },
+  "homepage": "https://github.com/alv-ch-ng/<%= answers.moduleName %>",
+  "description": "ALV-CH AngularJS <%= answers.moduleName %> components",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT"
+}

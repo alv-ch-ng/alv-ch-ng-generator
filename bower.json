@@ -1,0 +1,17 @@
+{
+    "name": "generator-alvchng",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "2.1.1",
+        "angular": "1.3.8",
+        "angular-bootstrap": "0.12.0",
+        "angular-cookies": "1.3.8",
+        "angular-mocks": "1.3.8",
+        "jasmine": "2.1.3",
+        "requirejs": "*"
+    },
+    "resolutions": {
+        "jquery": "2.1.1",
+        "angular": "~1.3.8"
+    }
+}

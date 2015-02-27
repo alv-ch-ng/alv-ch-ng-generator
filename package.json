@@ -1,0 +1,44 @@
+{
+  "name": "generator-alvchng",
+  "version": "0.0.1",
+  "description": "Yeoman generator for an alv-ch-ng module.",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "https://github.com/alv-ch-ng/generator-alvchng",
+  "author": {
+    "name": "Informatik der Arbeitslosenversicherung und Arbeitsvermittlung "
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "generator",
+    "alv-ch-ng"
+  ],
+  "dependencies": {
+    "yeoman-generator": "~0.17.0",
+    "chalk": "~0.4.0",
+    "yosay": "^0.1.0",
+    "yamljs": "0.2.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-jshint": "*",
+    "grunt-coveralls": "*",
+    "load-grunt-tasks": "^2.0.0",
+    "grunt-template-jasmine-istanbul": "^0.3.3",
+    "time-grunt": "^1.0.0",
+    "jasmine": "*",
+    "mocha": "*",
+    "requirejs": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}

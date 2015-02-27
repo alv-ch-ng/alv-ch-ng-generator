@@ -1,0 +1,2 @@
+alv-ch-ng.<%= _.camelize(answers.moduleName) %> [![Build Status](https://travis-ci.org/alv-ch-ng/<%= answers.moduleName %>.svg?branch=master)](https://travis-ci.org/alv-ch-ng/<%= answers.moduleName %>) [![Coverage Status](https://coveralls.io/repos/alv-ch-ng/<%= answers.moduleName %>/badge.svg)](https://coveralls.io/r/alv-ch-ng/<%= answers.moduleName %>) [![Code Climate](https://codeclimate.com/github/alv-ch-ng/<%= answers.moduleName %>/badges/gpa.svg)](https://codeclimate.com/github/alv-ch-ng/<%= answers.moduleName %>)
+=============
