@@ -70,20 +70,22 @@
                 }
             },<% } %>
             copy: {
-              files: [
-                {
-                  expand: true,
-                  cwd: 'lib/bootstrap/',
-                  src: 'fonts/*',
-                  dest: 'src/demo/fonts'
-                },
-                {
-                  expand: true,
-                  cwd: 'lib/bootstrap/dist/css/',
-                  src: 'bootstrap.css',
-                  dest: 'src/demo'
-                },
-              ]
+              demo: {
+                files: [
+                  {
+                    expand: true,
+                    cwd: 'lib/bootstrap/',
+                    src: 'fonts/*',
+                    dest: 'src/demo/fonts'
+                  },
+                  {
+                    expand: true,
+                    cwd: 'lib/bootstrap/dist/css/',
+                    src: 'bootstrap.css',
+                    dest: 'src/demo'
+                  }
+                ]
+              }
             },
             cssbeautifier: {
                 options: {
