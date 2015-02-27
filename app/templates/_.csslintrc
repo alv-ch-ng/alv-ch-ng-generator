@@ -12,5 +12,6 @@
   "known-properties": false,
   "font-faces": false,
   "font-sizes": false,
-  "outline-none": false
+  "outline-none": false,
+  "floats": false
 }

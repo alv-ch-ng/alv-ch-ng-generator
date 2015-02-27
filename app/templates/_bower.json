@@ -30,7 +30,7 @@
     "ng-lodash":"latest"
   },
   "devDependencies": {
-    <% if (answers.moduleName != 'core' ) { %>"alv-ch-ng.core": "latest",<% } %>
+    "alv-ch-ng.core": "latest",
     "angular": "latest",
     "angular-mocks": "latest",
     "angular-translate-storage-local": "latest",
