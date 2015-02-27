@@ -92,7 +92,13 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
 
     if (this.answers.addExample) {
       this.mkdir('src/example');
-      this.copy('src/example/index.html','src/example/index.html');
+      this.mkdir('src/example/locales');
+      this.mkdir('src/example/pages');
+      this.copy('src/example/index.html');
+      this.copy('src/example/locales/messages_de.json');
+      this.copy('src/example/locales/messages_en.json');
+      this.copy('src/example/example.app.js');
+      this.copy('src/example/pages/_example.html','src/example/pages/'+this.answers.moduleName+'.html');
     }
 
   },
