@@ -36,12 +36,12 @@
                         'dist/alv-ch-ng.<%= answers.moduleName %>.templates.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.templates.js']
                     }
                 },
-                demo: {
+                example: {
                   options: {
                     'mangle': false
                   },
                   files: {
-                    'src/demo/lib.min.js': [
+                    'src/example/lib.min.js': [
                       'lib/jquery/dist/jquery.js',
                       'lib/bootstrap/dist/js/bootstrap.js',
                       'lib/angular/angular.js',
@@ -70,19 +70,19 @@
                 }
             },<% } %>
             copy: {
-              demo: {
+              example: {
                 files: [
                   {
                     expand: true,
                     cwd: 'lib/bootstrap/',
                     src: 'fonts/*',
-                    dest: 'src/demo/fonts'
+                    dest: 'src/example/fonts'
                   },
                   {
                     expand: true,
                     cwd: 'lib/bootstrap/dist/css/',
                     src: 'bootstrap.css',
-                    dest: 'src/demo'
+                    dest: 'src/example'
                   }
                 ]
               }
@@ -267,7 +267,7 @@
         grunt.registerTask('templates', ['ngtemplates:templates']);
 
         // DEV
-        grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:prod',<% } %>'all-test','copy:demo','uglify:demo']);
+        grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:prod',<% } %>'all-test','copy:example','uglify:example']);
         grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
 
         // Default task.
