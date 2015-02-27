@@ -11,5 +11,6 @@
   "display-property-grouping": false,
   "known-properties": false,
   "font-faces": false,
+  "font-sizes": false,
   "outline-none": false
 }
