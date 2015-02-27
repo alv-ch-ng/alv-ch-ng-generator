@@ -86,7 +86,7 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
 
     if (this.answers.addLess) {
       this.mkdir('src/less');
-      this.copy('src/less/_less-file.less', 'src/less/' + this.answers.moduleName);
+      this.copy('src/less/_less-file.less', 'src/less/' + this.answers.moduleName+'.less');
       this.copy('src/less/_variables.less', 'src/less/variables.less');
     }
 
