@@ -19,16 +19,44 @@
                 dist: ['dist'],
                 build: ['build']
             },
+            ngtemplates:  {
+              'templates':  {
+                cwd:      'src/js/',
+                src:      'template/**.html',
+                dest:     'src/js/alv-ch-ng.<%= answers.moduleName %>.templates.js'
+              }
+            },
             uglify: {
                 options: {
-                    banner: '<%%= alvchng.banner %>'
+                    banner: '<%= alvchng.banner %>'
                 },
                 prod: {
                     files: {
-                        'dist/alv-ch-ng.<%= answers.moduleName %>.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.js']
+                        'dist/alv-ch-ng.<%= answers.moduleName %>.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.js'],
+                        'dist/alv-ch-ng.<%= answers.moduleName %>.templates.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.templates.js']
                     }
+                },
+                demo: {
+                  options: {
+                    'mangle': false
+                  },
+                  files: {
+                    'src/demo/lib.min.js': [
+                      'lib/jquery/dist/jquery.js',
+                      'lib/bootstrap/dist/js/bootstrap.js',
+                      'lib/angular/angular.js',
+                      'lib/angular-cookies/angular-cookies.js',
+                      'lib/angular-route/angular-route.js',
+                      'lib/angular-sanitize/angular-sanitize.js',
+                      'lib/angular-scroll/angular-scroll.js',
+                      'lib/ng-lodash/build/ng-lodash.js',
+                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js',
+                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.templates.js'
+                    ]
+                  }
                 }
-            },<% if (answers.addLess == true) { %>less: {
+            },
+            <% if (answers.addLess == true) { %>less: {
                 prod: {
                     options: {
                         paths: ['src/less'],
@@ -41,6 +69,22 @@
                     }
                 }
             },<% } %>
+            copy: {
+              files: [
+                {
+                  expand: true,
+                  cwd: 'lib/bootstrap/',
+                  src: 'fonts/*',
+                  dest: 'src/demo/fonts'
+                },
+                {
+                  expand: true,
+                  cwd: 'lib/bootstrap/dist/css/',
+                  src: 'bootstrap.css',
+                  dest: 'src/demo'
+                },
+              ]
+            },
             cssbeautifier: {
                 options: {
                     banner: '<%%= alvchng.banner %>'
@@ -74,7 +118,7 @@
             jasmine: {
                 unit: {
                     src: [
-                        'src/ng/*.js'
+                        'src/js/*.js'
                     ],
                     options: {
                         specs: ['test/unit/**/*.unit.spec.js'],
@@ -90,6 +134,7 @@
                             'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                             'lib/ng-lodash/build/ng-lodash.js',
                             'lib/alv-ch-ng-core/dist/alv-ch-ng.core.js',
+                            'lib/alv-ch-ng-core/dist/alv-ch-ng.core.templates.js',
                             'node_modules/grunt-contrib-jasmine/vendor/jasmine-2.0.0/jasmine.js'
                         ],
                         version: '2.0.0',
@@ -171,20 +216,60 @@
                     imports: ['src/less/**/*.less']
                 },
                 src: ['src/less/<%= answers.moduleName %>.less']
+            },
+            watch: {
+              templates: {
+                files: 'src/template/**/*.html',
+                  tasks: ['templates']
+              },
+              less: {
+                files: 'src/less/**/*.less',
+                  tasks: ['less:prod']
+              },
+              jshint: {
+                files: 'src/js/*.js',
+                  tasks: ['jshint-test']
+              },
+              test: {
+                  files: 'src/js/**/*.js',
+                  tasks: ['unit-test']
+              }
+            },
+            browserSync: {
+              dev: {
+                bsFiles: {
+                  src : 'src/**/*'
+                },
+                options: {
+                  server: {
+                    baseDir: './src',
+                    directory: false
+                  },
+                  watchTask: true
+                }
+              }
             }
         });
 
         // Tests
         grunt.registerTask('unit-test', ['jasmine']);
         grunt.registerTask('jshint-test', ['jshint']);
+        <% if (answers.addLess == true) { %>
         grunt.registerTask('lesslint-test', ['lesslint']);
-
-        grunt.registerTask('all-test', ['lesslint-test', 'htmlhint:templates', 'jshint-test', 'unit-test']);
+        <% } %>
+        grunt.registerTask('all-test', [<% if (answers.addLess == true) { %>'lesslint-test',<% } %> 'htmlhint:templates', 'jshint-test', 'unit-test']);
         // CI
         grunt.registerTask('travis', ['jshint', 'clean:build', 'unit-test', 'coveralls']);
 
+        // Templates
+        grunt.registerTask('templates', ['ngtemplates:templates']);
+
+        // DEV
+        grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:prod',<% } %>'all-test','copy:demo','uglify:demo']);
+        grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
+
         // Default task.
-        grunt.registerTask('default', ['clean:all','all-test','less:prod','cssbeautifier','cssmin','concat','uglify:prod']);
+        grunt.registerTask('default', ['clean:all','templates','all-test',<% if (answers.addLess == true) { %>'less:prod','cssbeautifier','cssmin',<% } %> 'concat','uglify:prod']);
     };
 
 

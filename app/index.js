@@ -43,6 +43,14 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
         default: function () {
           return false;
         }
+      },
+      {
+        type: 'confirm',
+        name: 'addExample',
+        message: 'Shall I add an example?',
+        default: function () {
+          return true;
+        }
       }
     ], function (props) {
       this.answers = props;
@@ -55,6 +63,7 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
 
     this.mkdir('src');
     this.mkdir('src/js');
+    this.mkdir('src/templates');
     this.mkdir('test');
     this.mkdir('test/unit');
 
@@ -79,6 +88,11 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
       this.mkdir('src/less');
       this.copy('src/less/_less-file.less', 'src/less/' + this.answers.moduleName);
       this.copy('src/less/_variables.less', 'src/less/variables.less');
+    }
+
+    if (this.answers.addExample) {
+      this.mkdir('src/example');
+      this.copy('src/example/index.html','src/example/index.html');
     }
 
   },

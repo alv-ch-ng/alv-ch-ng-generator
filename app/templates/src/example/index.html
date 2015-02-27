@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="example-app">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>alv-ch-ng.<%= answers.moduleName %></title>
+
+  <!-- webfontloader -->
+  <script>
+    WebFontConfig = {
+      custom: {
+        families: ['Frutiger Neue','Frutiger Neue Light','Admin Icons']
+      },
+      google: { families: ['Open+Sans:400italic,700italic,400,700:latin'] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+  <!-- /webfontloader -->
+
+  <!-- styles -->
+  <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+  <!-- set options before less.js script -->
+  <script>
+    less = {
+      env: "development",
+      async: false,
+      fileAsync: false,
+      poll: 1000,
+      functions: {},
+      dumpLineNumbers: "comments",
+      relativeUrls: false,
+      rootpath: ":/a.com/"
+    };
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
+  <link rel="stylesheet/less" type="text/css" href="../less/<%= answers.moduleName %>.less" />
+  <!-- /style -->
+
+  <!-- scripts -->
+  <script src="lib.min.js"></script>
+
+  <script src="../js/<%= answers.moduleName %>.js"></script>
+  <script src="../js/<%= answers.moduleName %>.templates.js"></script>
+
+  <script src="example.app.js"></script>
+  <!-- /scripts -->
+</head>
+<body>
+<div id="systembar" class="systembar" scroll-fix>
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li>
+        <a class="pointer" href="https://github.com/alv-ch-ng/<%= answers.moduleName %>" target="_blank">Github</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<si-navbar>
+  <ul class="nav navbar-nav">
+    <li active-startswith="/getting_started">
+      <a href="#/getting_started" class="pointer" i18n-msg="nav.gettingStarted"></a>
+    </li>
+    <li active-startswith="/less">
+      <a href="#/less" class="pointer" i18n-msg="nav.less"></a>
+    </li>
+    <li active-startswith="/components">
+      <a href="#/components" class="pointer" i18n-msg="nav.components"></a>
+    </li>
+    <li active-startswith="/angular">
+      <a href="#/angular" class="pointer" i18n-msg="nav.ng"></a>
+    </li>
+  </ul>
+</si-navbar>
+
+<!--/.system messages -->
+
+<div class="container">
+  <si-release-note></si-release-note>
+  <messages message-scope="'global'"></messages>
+  <div id="main" ng-view class="ng-cloak"></div>
+</div>
+<!--./container -->
+
+<div class="container-footer" id="footer-container">
+  <hr id="footer" scroll-fix scroll-fix-bottom="footer-content" />
+  <div id="footer-content" class="footer">
+    <div class="container">
+      <div class="row footer-services">
+        <div class="footer-copyright" translate="common_footer_copyright">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- build:remove -->
+<script type='text/javascript' id="__bs_script__">//<![CDATA[
+document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.1.8.3.js'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
+//]]></script>
+<!-- /build -->
+</body>
+</html>
