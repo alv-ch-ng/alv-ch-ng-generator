@@ -81,7 +81,7 @@
                   {
                     expand: true,
                     cwd: 'lib/bootstrap/dist/css/',
-                    src: 'bootstrap.css',
+                    src: ['bootstrap.css','bootstrap.css.map']
                     dest: 'src/example'
                   }
                 ]
