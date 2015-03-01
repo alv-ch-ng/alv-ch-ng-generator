@@ -307,7 +307,7 @@
         grunt.registerTask('travis', ['jshint', 'clean:build', 'unit-test', 'coveralls']);
 
         // Templates
-        grunt.registerTask('templates', ['ngtemplates:templates']);
+        grunt.registerTask('templates', ['ngtemplates']);
 
         // DEV
         grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:prod',<% } %>'all-test','copy:example','uglify:example']);
