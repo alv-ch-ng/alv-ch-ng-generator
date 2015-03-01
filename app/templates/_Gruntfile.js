@@ -22,7 +22,7 @@
             ngtemplates:  {
               'alv-ch-ng.<%= answers.moduleName %>':  {
                 cwd:      'src/',
-                src:      'template/**.html',
+                src:      'template/**/*.html',
                 dest:     'src/js/<%= answers.moduleName %>.templates.js'
               }
             },
@@ -157,6 +157,7 @@
                             'lib/jasmine-jquery/lib/jasmine-jquery.js',
                             'lib/bootstrap/dist/js/bootstrap.js',
                             'lib/angular/angular.js',
+                            'lib/angular-mocks/angular-mocks.js',
                             'lib/angular-aria/angular-aria.js',
                             'lib/angular-cookies/angular-cookies.js',
                             'lib/angular-route/angular-route.js',
@@ -169,7 +170,6 @@
                             'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                             'lib/ng-lodash/build/ng-lodash.js',
                             'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js',
-                            'lib/alv-ch-ng.core/dist/alv-ch-ng.core.templates.js',
                             'node_modules/grunt-contrib-jasmine/vendor/jasmine-2.0.0/jasmine.js'
                         ],
                         version: '2.0.0',
@@ -242,7 +242,7 @@
                     options: {
                         jshintrc: '.jshintrc'
                     },
-                    src: ['src/**/*.js']
+                    src: ['src/js/**/*.js']
                 },
                 test: {
                     options: {

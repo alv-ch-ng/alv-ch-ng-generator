@@ -3,8 +3,6 @@
   "version": "<%= answers.version %>",
   "ignore": [
     ".idea",
-    "demo",
-    "dev",
     "lib",
     "node_modules",
     "src",
@@ -18,9 +16,6 @@
     "Gruntfile.js",
     "package.json",
     "README.md",
-    "**/.*",
-    "bower_components",
-    "tests"
   ],
   "dependencies": {
     "angular-translate": "2.6.0",
