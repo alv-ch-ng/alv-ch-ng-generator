@@ -139,8 +139,8 @@
                 banner: '<%%= alvchng.banner %>'
               },
               prod: {
-                src: ['src/js/%= answers.moduleName %>.js', 'src/js/%= answers.moduleName %>.templates.js'],
-                dest: 'dist/alv-ch-ng.%= answers.moduleName %>.js'
+                src: ['src/js/<%= answers.moduleName %>.js', 'src/js/<%= answers.moduleName %>.templates.js'],
+                dest: 'dist/alv-ch-ng.<%= answers.moduleName %>.js'
               }
             },
             jasmine: {
