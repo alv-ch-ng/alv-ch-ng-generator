@@ -32,11 +32,6 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
         default: '0.2.0'
       },
       {
-        type: 'input',
-        name: 'codeClimateRepoToken',
-        message: 'What\'s the code climate\'s repo token?'
-      },
-      {
         type: 'confirm',
         name: 'addLess',
         message: 'Shall I add less?',
