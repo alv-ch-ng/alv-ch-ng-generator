@@ -10,8 +10,8 @@
     'ngRoute',
     'ngCookies',
     'ngResource',
-    'ngTouch',
     'ngAria',
+    'pascalprecht.translate',
     'alv-ch-ng.core',
     'alv-ch-ng.<%= answers.moduleName %>'
   ];
@@ -20,6 +20,11 @@
    * The example application.
    */
   var app = angular.module('example-app', dependencies);
+
+  /**
+   * Common constants
+   */
+  app.constant('supportedLanguages', ['de', 'en']);
 
   /**
    * xSite request & routing definitions
@@ -32,8 +37,8 @@
 
       /** -- Routings -- **/
       var routes = [
-        {path: '/', redirectTo: '/welcome'},
-        {path: '/welcome', templateUrl: '/pages/<%= answers.moduleName %>.html', controller: 'ExampleCtrl'}
+        {path: '/', redirectTo: '/<%= answers.moduleName %>'},
+        {path: '/<%= answers.moduleName %>', templateUrl: '/example/pages/<%= answers.moduleName %>.html', controller: 'ExampleCtrl'}
       ];
 
       for (var i = 0; i < routes.length; i++) {

@@ -46,6 +46,14 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
         default: function () {
           return true;
         }
+      },
+      {
+        type: 'confirm',
+        name: 'addFrutiger',
+        message: 'Shall I add the Frutiger font (copy the font files to private/fonts/ folder)?',
+        default: function () {
+          return false;
+        }
       }
     ], function (props) {
       this.answers = props;
@@ -89,11 +97,13 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
       this.mkdir('src/example');
       this.mkdir('src/example/locales');
       this.mkdir('src/example/pages');
+      this.mkdir('src/example/images');
       this.copy('src/example/index.html');
       this.copy('src/example/locales/messages_de.json');
       this.copy('src/example/locales/messages_en.json');
       this.copy('src/example/example.app.js');
       this.copy('src/example/pages/_example.html','src/example/pages/'+this.answers.moduleName+'.html');
+      this.copy('src/example/images/alv-ch-ng.png');
     }
 
   },

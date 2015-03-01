@@ -31,7 +31,9 @@
   },
   "devDependencies": {
     "alv-ch-ng.core": "latest",
+    "alv-ch-ng.style": "latest",
     "angular": "latest",
+    "angular-resource": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
     "angular-translate-storage-local": "latest",

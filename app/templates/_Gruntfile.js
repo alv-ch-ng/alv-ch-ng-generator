@@ -45,10 +45,16 @@
                       'lib/jquery/dist/jquery.js',
                       'lib/bootstrap/dist/js/bootstrap.js',
                       'lib/angular/angular.js',
+                      'lib/angular-aria/angular-aria.js',
                       'lib/angular-cookies/angular-cookies.js',
                       'lib/angular-route/angular-route.js',
                       'lib/angular-sanitize/angular-sanitize.js',
+                      'lib/angular-resource/angular-resource.js',
                       'lib/angular-scroll/angular-scroll.js',
+                      'lib/angular-translate/angular-translate.js',
+                      'lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
+                      'lib/angular-translate-storage-local/angular-translate-storage-local.js',
+                      'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                       'lib/ng-lodash/build/ng-lodash.js',
                       'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js',
                       'lib/alv-ch-ng.core/dist/alv-ch-ng.core.templates.js'
@@ -76,14 +82,28 @@
                     expand: true,
                     cwd: 'lib/bootstrap/',
                     src: 'fonts/*',
-                    dest: 'src/example/fonts'
+                    dest: 'src/example'
                   },
                   {
                     expand: true,
-                    cwd: 'lib/bootstrap/dist/css/',
-                    src: ['bootstrap.css','bootstrap.css.map']
-                    dest: 'src/example'
+                    cwd: 'lib/alv-ch-ng.style/dist/css/',
+                    src: 'alv-ch-ng.bootstrap.css',
+                    dest: 'src/example/styles'
                   }
+                  <% if (answers.addFrutiger == true) { %>
+                    ,{
+                      expand: true,
+                      cwd: 'private/fonts/',
+                      src: '**/*',
+                      dest: 'src/example/fonts'
+                    },
+                    {
+                      expand: true,
+                      cwd: 'lib/alv-ch-ng.style/',
+                      src: 'dist/css/*.css',
+                      dest: 'src/example/styles'
+                    }
+                  <% } %>
                 ]
               }
             },
