@@ -55,8 +55,7 @@
                       'lib/angular-translate-storage-local/angular-translate-storage-local.js',
                       'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                       'lib/ng-lodash/build/ng-lodash.js',
-                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js',
-                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.templates.js'
+                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js'
                     ]
                   }
                 }
