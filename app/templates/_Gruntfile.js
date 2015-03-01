@@ -20,10 +20,10 @@
                 build: ['build']
             },
             ngtemplates:  {
-              'templates':  {
-                cwd:      'src/js/',
+              'alv-ch-ng.<%= answers.moduleName %>':  {
+                cwd:      'src/',
                 src:      'template/**.html',
-                dest:     'src/js/alv-ch-ng.<%= answers.moduleName %>.templates.js'
+                dest:     'src/js/<%= answers.moduleName %>.templates.js'
               }
             },
             uglify: {
@@ -32,8 +32,7 @@
                 },
                 prod: {
                     files: {
-                        'dist/alv-ch-ng.<%= answers.moduleName %>.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.js'],
-                        'dist/alv-ch-ng.<%= answers.moduleName %>.templates.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.templates.js']
+                        'dist/alv-ch-ng.<%= answers.moduleName %>.min.js': ['dist/alv-ch-ng.<%= answers.moduleName %>.js']
                     }
                 },
                 example: {
@@ -89,21 +88,19 @@
                     cwd: 'lib/alv-ch-ng.style/dist/css/',
                     src: 'alv-ch-ng.bootstrap.css',
                     dest: 'src/example/styles'
-                  }
-                  <% if (answers.addFrutiger == true) { %>
-                    ,{
-                      expand: true,
-                      cwd: 'private/fonts/',
-                      src: '**/*',
-                      dest: 'src/example/fonts'
-                    },
-                    {
-                      expand: true,
-                      cwd: 'lib/alv-ch-ng.style/dist/css/',
-                      src: '*.css',
-                      dest: 'src/example/styles'
-                    }
-                  <% } %>
+                  }<% if (answers.addFrutiger == true) { %>,
+                  {
+                    expand: true,
+                    cwd: 'private/fonts/',
+                    src: '**/*',
+                    dest: 'src/example/fonts'
+                  },
+                  {
+                    expand: true,
+                    cwd: 'lib/alv-ch-ng.style/dist/css/',
+                    src: '*.css',
+                    dest: 'src/example/styles'
+                  }<% } %>
                 ]
               }
             },
@@ -136,6 +133,16 @@
                         { src: ['dist/css/<%= answers.moduleName %>.min.css'], dest: 'dist/css/<%= answers.moduleName %>.min.css' }
                     ]
                 }
+            },
+            concat: {
+              options: {
+                separator: ';',
+                banner: '<%%= alvchng.banner %>'
+              },
+              prod: {
+                src: ['src/js/%= answers.moduleName %>.js', 'src/js/%= answers.moduleName %>.templates.js'],
+                dest: 'dist/alv-ch-ng.%= answers.moduleName %>.js'
+              }
             },
             jasmine: {
                 unit: {
@@ -216,6 +223,14 @@
                     gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
                 }
             },
+            htmlhint: {
+              options: {
+                htmlhintrc: '.htmlhintrc'
+              },
+                templates: {
+                src: ['src/template/**/*.html']
+              }
+            },
             jshint: {
                 gruntfile: {
                     options: {
@@ -246,6 +261,10 @@
                 src: ['src/less/<%= answers.moduleName %>.less']
             },
             watch: {
+              html: {
+                files: 'src/template/**/*.html',
+                tasks: ['htmlhint:templates']
+              },
               templates: {
                 files: 'src/template/**/*.html',
                   tasks: ['templates']
@@ -282,9 +301,7 @@
         // Tests
         grunt.registerTask('unit-test', ['jasmine']);
         grunt.registerTask('jshint-test', ['jshint']);
-        <% if (answers.addLess == true) { %>
-        grunt.registerTask('lesslint-test', ['lesslint']);
-        <% } %>
+        <% if (answers.addLess == true) { %>grunt.registerTask('lesslint-test', ['lesslint']);<% } %>
         grunt.registerTask('all-test', [<% if (answers.addLess == true) { %>'lesslint-test',<% } %> 'htmlhint:templates', 'jshint-test', 'unit-test']);
         // CI
         grunt.registerTask('travis', ['jshint', 'clean:build', 'unit-test', 'coveralls']);

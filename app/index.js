@@ -66,7 +66,7 @@ var AlvChNgGenerator = yeoman.generators.Base.extend({
 
     this.mkdir('src');
     this.mkdir('src/js');
-    this.mkdir('src/templates');
+    this.mkdir('src/template');
     this.mkdir('test');
     this.mkdir('test/unit');
 
