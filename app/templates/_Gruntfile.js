@@ -71,7 +71,18 @@
                     files: {
                         'dist/css/<%= answers.moduleName %>.css': ['src/less/<%= answers.moduleName %>.less']
                     }
-                }
+                }<% if (answers.addExample == true) { %>,
+                example: {
+                  options: {
+                    paths: ['src/less'],
+                    compress: false,
+                    cleancss: true,
+                    ieCompat: true
+                  },
+                  files: {
+                    'src/example/styles/<%= answers.moduleName %>.css': ['src/less/<%= answers.moduleName %>.less']
+                  }
+                }<% } %>
             },<% } %>
             copy: {
               example: {
@@ -267,11 +278,15 @@
               templates: {
                 files: 'src/template/**/*.html',
                   tasks: ['templates']
-              },
+              }<% if (answers.addLess == true) { %>,
               less: {
                 files: 'src/less/**/*.less',
-                  tasks: ['less:prod']
-              },
+                tasks: ['lesslint']
+              }<% } %><% if (answers.addExample == true && answers.addLess == true) { %>,
+              less2css: {
+                files: 'src/less/**/*.less',
+                tasks: ['less:example']
+              },<% } %>
               jshint: {
                 files: 'src/js/*.js',
                   tasks: ['jshint-test']
@@ -309,7 +324,7 @@
         grunt.registerTask('templates', ['ngtemplates']);
 
         // DEV
-        grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:prod',<% } %>'all-test','copy:example','uglify:example']);
+        grunt.registerTask('build', ['templates',<% if (answers.addLess == true) { %>'less:example',<% } %>'all-test','copy:example','uglify:example']);
         grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
 
         // Default task.
