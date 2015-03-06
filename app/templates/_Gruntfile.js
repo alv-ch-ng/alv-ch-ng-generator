@@ -59,8 +59,7 @@
                     ]
                   }
                 }
-            },
-            <% if (answers.addLess == true) { %>less: {
+            },<% if (answers.addLess == true) { %>less: {
                 prod: {
                     options: {
                         paths: ['src/less'],
@@ -84,7 +83,17 @@
                   }
                 }<% } %>
             },<% } %>
-            copy: {
+            copy: {<% if (answers.addExample == true) { %>
+              prod: {
+                files: [
+                  {
+                    expand: true,
+                    cwd: 'src/example/',
+                    src: ['fonts/glyphicons*','images/**/*','locales/**/*','pages/**/*','styles/**/*','*.js','*.html'],
+                    dest: 'dist/example'
+                  }
+                ]
+              },<% } %>
               example: {
                 files: [
                   {
@@ -273,19 +282,11 @@
             watch: {
               html: {
                 files: 'src/template/**/*.html',
-                tasks: ['htmlhint:templates']
-              },
-              templates: {
-                files: 'src/template/**/*.html',
-                  tasks: ['templates']
-              }<% if (answers.addLess == true) { %>,
+                tasks: ['htmlhint:templates', 'templates']
+              },<% if (answers.addLess == true) { %>
               less: {
                 files: 'src/less/**/*.less',
-                tasks: ['lesslint']
-              }<% } %><% if (answers.addExample == true && answers.addLess == true) { %>,
-              less2css: {
-                files: 'src/less/**/*.less',
-                tasks: ['less:example']
+                tasks: ['lesslint'<% if (answers.addExample == true) { %>, 'less:example'<% } %>]
               },<% } %>
               jshint: {
                 files: 'src/js/*.js',
@@ -328,7 +329,7 @@
         grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
 
         // Default task.
-        grunt.registerTask('default', ['clean:all','templates','all-test',<% if (answers.addLess == true) { %>'less:prod','cssbeautifier','cssmin',<% } %> 'concat','uglify:prod']);
+        grunt.registerTask('default', ['clean:all','templates','all-test',<% if (answers.addLess == true) { %>'less:prod','cssbeautifier','cssmin',<% } %> 'concat','uglify:prod'<% if (answers.addExample == true) { %>, 'copy:prod'<% } %>]);
     };
 
 
