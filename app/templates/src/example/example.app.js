@@ -13,7 +13,8 @@
     'ngAria',
     'pascalprecht.translate',
     'alv-ch-ng.core',
-    'alv-ch-ng.<%= answers.moduleName %>'
+    'alv-ch-ng.<%= answers.moduleName %>'<% if (answers.addExample == true) { %>,
+    'ng-dev'<% } %>
   ];
 
   /**

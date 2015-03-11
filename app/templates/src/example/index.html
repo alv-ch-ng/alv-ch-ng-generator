@@ -34,21 +34,11 @@
 
     <!-- styles -->
     <link rel="stylesheet" type="text/css" href="styles/alv-ch-ng.bootstrap.css"/>
-    <!-- set options before less.js script -->
-    <script>
-      less = {
-        env: "development",
-        async: false,
-        fileAsync: false,
-        poll: 1000,
-        functions: {},
-        dumpLineNumbers: "comments",
-        relativeUrls: false,
-        rootpath: ":/a.com/"
-      };
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
-    <link rel="stylesheet/less" type="text/css" href="../less/<%= answers.moduleName %>.less"/>
+    <% if (answers.addExample == true) { %>
+    <link rel="stylesheet" type="text/css" href="styles/github.min.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/ng-dev.min.css"/>
+    <% } %>
+    <link rel="stylesheet" type="text/css" href="styles/<%= answers.moduleName %>.css"/>
     <!-- /style -->
 
     <!-- scripts -->

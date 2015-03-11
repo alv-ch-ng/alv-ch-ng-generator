@@ -26,7 +26,8 @@
   },
   "devDependencies": {
     "alv-ch-ng.core": "latest",
-    "alv-ch-ng.style": "latest",
+    "alv-ch-ng.style": "latest",<% if (answers.addExample == true) { %>,
+    "ng-dev": "latest"<% } %>
     "angular": "latest",
     "angular-resource": "latest",
     "angular-mocks": "latest",
